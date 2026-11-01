@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.vercel/
+private-assets/
+.env
+.env.*
+!.env.example
+*.local
