@@ -95,22 +95,82 @@ function ProjectArtwork({ project, image, onOpen, onPrevious, onNext, t, languag
 function ProjectCard({ project, onOpenViewer, t, language }) {
   const images = project.images ?? [];
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isInView, setIsInView] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
+  const cardRef = useRef(null);
   const image = images.length > 0
     ? { ...images[activeIndex], index: activeIndex }
     : null;
   const hasLinks = Boolean(project.demoUrl || project.repositoryUrl || project.files?.length);
 
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!card || images.length < 2) {
+      return undefined;
+    }
+    if (!("IntersectionObserver" in window)) {
+      setIsInView(true);
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInView(entry.isIntersecting),
+      { threshold: 0.15 },
+    );
+
+    observer.observe(card);
+    return () => observer.disconnect();
+  }, [images.length]);
+
+  useEffect(() => {
+    if (
+      !isInView
+      || isHovered
+      || isFocused
+      || hasInteracted
+      || images.length < 2
+      || window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return undefined;
+    }
+
+    const intervalId = window.setInterval(() => {
+      if (document.visibilityState === "visible") {
+        setActiveIndex((index) => (index + 1) % images.length);
+      }
+    }, 5000);
+
+    return () => window.clearInterval(intervalId);
+  }, [hasInteracted, images.length, isFocused, isHovered, isInView]);
+
   function moveSlide(direction) {
+    setHasInteracted(true);
     setActiveIndex((index) => (index + direction + images.length) % images.length);
   }
 
   return (
-    <article className="project-card">
+    <article
+      className="project-card"
+      ref={cardRef}
+      onPointerEnter={() => setIsHovered(true)}
+      onPointerLeave={() => setIsHovered(false)}
+      onFocusCapture={() => setIsFocused(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) {
+          setIsFocused(false);
+        }
+      }}
+    >
       <div className="project-artwork">
         <ProjectArtwork
           project={project}
           image={image}
-          onOpen={() => onOpenViewer(project.title, images, activeIndex)}
+          onOpen={() => {
+            setHasInteracted(true);
+            onOpenViewer(project.title, images, activeIndex);
+          }}
           onPrevious={() => moveSlide(-1)}
           onNext={() => moveSlide(1)}
           t={t}
@@ -127,7 +187,10 @@ function ProjectCard({ project, onOpenViewer, t, language }) {
                   ? `${project.title}，${t("showSlide")}${index + 1}张图片`
                   : `${t("showSlide")} ${index + 1} ${language === "id" ? "dari" : "of"} ${images.length} ${language === "id" ? "untuk" : "for"} ${project.title}`}
                 aria-current={index === activeIndex ? "true" : undefined}
-                onClick={() => setActiveIndex(index)}
+                onClick={() => {
+                  setHasInteracted(true);
+                  setActiveIndex(index);
+                }}
               />
             ))}
           </div>

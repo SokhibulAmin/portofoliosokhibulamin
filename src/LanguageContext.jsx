@@ -90,6 +90,10 @@ const translations = {
     internshipPhoto1: "Dokumentasi bersama tim DISKOMINFO",
     internshipPhoto2: "Suasana kegiatan dan diskusi magang",
     internshipPhoto3: "Dokumentasi kegiatan di ruang kerja",
+    previousInternshipPhoto: "Foto magang sebelumnya",
+    nextInternshipPhoto: "Foto magang berikutnya",
+    showInternshipPhoto: ({ number }) => `Tampilkan foto magang ${number}`,
+    openInternshipPhoto: ({ photo }) => `Buka foto magang: ${photo}`,
     askMore: "Tanyakan lebih lanjut",
     certificatesEyebrow: "05 / Sertifikat",
     certificatesTitle: "Dokumen",
@@ -212,6 +216,10 @@ const translations = {
     internshipPhoto1: "Photo with the DISKOMINFO team",
     internshipPhoto2: "Internship meeting and discussion",
     internshipPhoto3: "Internship activities in the workplace",
+    previousInternshipPhoto: "Previous internship photo",
+    nextInternshipPhoto: "Next internship photo",
+    showInternshipPhoto: ({ number }) => `Show internship photo ${number}`,
+    openInternshipPhoto: ({ photo }) => `Open internship photo: ${photo}`,
     askMore: "Ask for details",
     certificatesEyebrow: "05 / Certificates",
     certificatesTitle: "Experience",
@@ -334,6 +342,10 @@ const translations = {
     internshipPhoto1: "与 DISKOMINFO 团队合影",
     internshipPhoto2: "实习会议与讨论",
     internshipPhoto3: "工作场所的实习活动",
+    previousInternshipPhoto: "上一张实习照片",
+    nextInternshipPhoto: "下一张实习照片",
+    showInternshipPhoto: ({ number }) => `显示第 ${number} 张实习照片`,
+    openInternshipPhoto: ({ photo }) => `打开实习照片：${photo}`,
     askMore: "了解更多",
     certificatesEyebrow: "05 / 证书",
     certificatesTitle: "经历",
@@ -388,7 +400,10 @@ export function LanguageProvider({ children }) {
   const value = useMemo(() => ({
     language,
     setLanguage,
-    t: (key) => translations[language][key] ?? translations.id[key] ?? key,
+    t: (key, values) => {
+      const translation = translations[language][key] ?? translations.id[key] ?? key;
+      return typeof translation === "function" ? translation(values) : translation;
+    },
   }), [language]);
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;

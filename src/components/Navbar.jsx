@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Menu, Moon, Sun, X } from "lucide-react";
+import { Languages, Menu, Moon, Sun, X } from "lucide-react";
 import { useLanguage } from "../LanguageContext.jsx";
 
 const links = [
@@ -44,17 +44,6 @@ export default function Navbar() {
           <span>Sokhibul Amin<span className="wordmark-period">.</span></span>
         </a>
 
-        <button
-          className="menu-toggle"
-          type="button"
-          aria-label={menuOpen ? t("menuClose") : t("menuOpen")}
-          aria-expanded={menuOpen}
-          aria-controls="primary-navigation"
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          {menuOpen ? <X size={21} /> : <Menu size={21} />}
-        </button>
-
         <div
           id="primary-navigation"
           className={`nav-links${menuOpen ? " is-open" : ""}`}
@@ -64,8 +53,28 @@ export default function Navbar() {
               {t(link.label)}
             </a>
           ))}
+          <a className="nav-cta" href="#kontak" onClick={closeMenu}>
+            {t("connect")} <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <div className="nav-actions">
+          <button
+            className="menu-toggle"
+            type="button"
+            aria-label={menuOpen ? t("menuClose") : t("menuOpen")}
+            aria-expanded={menuOpen}
+            aria-controls="primary-navigation"
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            {menuOpen ? <X size={21} /> : <Menu size={21} />}
+          </button>
           <label className="language-picker">
             <span className="visually-hidden">{t("language")}</span>
+            <span className="language-indicator" aria-hidden="true">
+              <Languages size={17} />
+              <small>{language.toUpperCase()}</small>
+            </span>
             <select
               aria-label={t("language")}
               value={language}
@@ -85,9 +94,6 @@ export default function Navbar() {
           >
             {theme === "dark" ? <Sun size={17} /> : <Moon size={17} />}
           </button>
-          <a className="nav-cta" href="#kontak" onClick={closeMenu}>
-            {t("connect")} <span aria-hidden="true">↗</span>
-          </a>
         </div>
       </nav>
     </header>
