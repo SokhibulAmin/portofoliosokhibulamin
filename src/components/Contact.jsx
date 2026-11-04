@@ -1,5 +1,6 @@
 import { ArrowUpRight, Linkedin, Mail, MessageCircle } from "lucide-react";
 import { SiInstagram, SiTiktok } from "@icons-pack/react-simple-icons";
+import { useLanguage } from "../LanguageContext.jsx";
 
 const contacts = [
   {
@@ -44,30 +45,36 @@ const contacts = [
 ];
 
 export default function Contact() {
+  const { t, language } = useLanguage();
+  const whatsappMessage = language === "en"
+    ? "Hello Sokhibul Amin, I would like to discuss your portfolio."
+    : language === "zh"
+      ? "你好 Sokhibul Amin，我想和你讨论一下作品集。"
+      : "Halo Sokhibul Amin, saya ingin berdiskusi mengenai portofolio Anda.";
+  const whatsappHref = `https://wa.me/62882022681516?text=${encodeURIComponent(whatsappMessage)}`;
+
   return (
     <section className="section contact-section section-anchor" id="kontak">
       <div className="container-wide">
         <div className="contact-panel">
           <div className="contact-copy">
-            <p className="eyebrow">06 / Kontak</p>
-            <h2>Ada ide menarik?<br /><span className="text-gradient">Mari bicarakan.</span></h2>
-            <p>
-              Hubungi saya melalui WhatsApp, email, atau media sosial.
-            </p>
+            <p className="eyebrow">{t("contactEyebrow")}</p>
+            <h2>{t("contactTitle")}<br /><span className="text-gradient">{t("contactTitleAccent")}</span></h2>
+            <p>{t("contactDescription")}</p>
             <a
               className="button button-primary contact-email-button"
-              href="https://wa.me/62882022681516?text=Halo%20Sokhibul%20Amin%2C%20saya%20ingin%20berdiskusi%20mengenai%20portofolio%20Anda."
+              href={whatsappHref}
               target="_blank"
               rel="noreferrer"
             >
-              Hubungi via WhatsApp <ArrowUpRight size={17} />
+              {t("contactWhatsApp")} <ArrowUpRight size={17} />
             </a>
           </div>
           <div className="contact-list">
             {contacts.map(({ name, value, href, icon: Icon, iconColor, external }) => (
               <a
                 className="contact-item"
-                href={href}
+                href={name === "WhatsApp" ? whatsappHref : href}
                 key={name}
                 target={external ? "_blank" : undefined}
                 rel={external ? "noreferrer" : undefined}

@@ -1,30 +1,27 @@
 import { ArrowUpRight, BookOpen, GraduationCap, Sparkles } from "lucide-react";
-
-const highlights = [
-  { icon: GraduationCap, label: "Pendidikan", value: "S1 Teknik Informatika" },
-  { icon: BookOpen, label: "Ruang dokumentasi", value: "Karya, proyek, dan pengalaman" },
-  { icon: Sparkles, label: "Proses", value: "Belajar dan terus berkembang" },
-];
+import { useLanguage } from "../LanguageContext.jsx";
 
 export default function About() {
+  const { t } = useLanguage();
+  const highlights = [
+    { icon: GraduationCap, label: t("education"), value: t("degree") },
+    { icon: BookOpen, label: t("documentation"), value: t("worksProjectsExperience") },
+    { icon: Sparkles, label: t("process"), value: t("keepLearning") },
+  ];
+
   return (
     <section className="section section-anchor" id="tentang">
       <div className="container-wide">
         <div className="section-heading">
-          <p className="eyebrow">01 / Tentang</p>
-          <h2>Ruang untuk <span className="text-gradient">bertumbuh.</span></h2>
+          <p className="eyebrow">{t("aboutEyebrow")}</p>
+          <h2>{t("aboutTitle")} <span className="text-gradient">{t("aboutTitleAccent")}</span></h2>
         </div>
         <div className="about-layout">
           <div className="about-intro">
-            <p className="about-lead">Halo, saya Sokhibul Amin.</p>
-            <p className="body-copy">
-              Website ini menjadi tempat untuk mendokumentasikan berbagai
-              karya, proyek, pengalaman, dan perjalanan belajar saya. Isinya
-              akan terus bertambah seiring proses dan karya yang dapat
-              dibagikan.
-            </p>
+            <p className="about-lead">{t("hello")}</p>
+            <p className="body-copy">{t("aboutDescription")}</p>
             <a className="text-link" href="#kontak">
-              Sapa saya <ArrowUpRight size={16} />
+              {t("sayHello")} <ArrowUpRight size={16} />
             </a>
           </div>
           <div className="about-highlights">

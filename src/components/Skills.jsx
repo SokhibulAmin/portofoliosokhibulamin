@@ -1,24 +1,23 @@
 import { BarChart3, BrainCircuit, Code2 } from "lucide-react";
-
-const skills = [
-  { icon: Code2, name: "Pengembangan web", detail: "Tercatat melalui beberapa proyek website." },
-  { icon: BarChart3, name: "Excel & data", detail: "Terdapat workbook dan dataset dalam arsip karya." },
-  { icon: BrainCircuit, name: "Deep learning", detail: "Tercantum pada dokumentasi proyek LeafCare." },
-];
+import { useLanguage } from "../LanguageContext.jsx";
 
 export default function Skills() {
+  const { t } = useLanguage();
+  const skills = [
+    { icon: Code2, name: t("skillWeb"), detail: t("skillWebDetail") },
+    { icon: BarChart3, name: t("skillData"), detail: t("skillDataDetail") },
+    { icon: BrainCircuit, name: t("skillDeepLearning"), detail: t("skillDeepLearningDetail") },
+  ];
+
   return (
     <section className="section section-tinted section-anchor" id="keahlian">
       <div className="container-wide">
         <div className="section-heading section-heading-row">
           <div>
-            <p className="eyebrow">03 / Skills</p>
-            <h2>Bidang dalam <span className="text-gradient">karya.</span></h2>
+            <p className="eyebrow">{t("skillsEyebrow")}</p>
+            <h2>{t("skillsTitle")} <span className="text-gradient">{t("skillsTitleAccent")}</span></h2>
           </div>
-          <p className="heading-note">
-            Dirangkum dari karya yang tersedia, tanpa klaim tingkat kemahiran
-            atau tools yang belum terverifikasi.
-          </p>
+          <p className="heading-note">{t("skillsNote")}</p>
         </div>
         <div className="skills-grid">
           {skills.map(({ icon: Icon, name, detail }) => (

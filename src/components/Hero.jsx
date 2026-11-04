@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { ArrowDown, ArrowUpRight, Sparkles } from "lucide-react";
+import { useLanguage } from "../LanguageContext.jsx";
 
-function LocalClock() {
+const locales = { id: "id-ID", en: "en-US", zh: "zh-CN" };
+
+function LocalClock({ language, t }) {
   const [now, setNow] = useState(() => new Date());
 
   useEffect(() => {
@@ -9,16 +12,16 @@ function LocalClock() {
     return () => window.clearInterval(intervalId);
   }, []);
 
-  const date = new Intl.DateTimeFormat("id-ID", {
+  const date = new Intl.DateTimeFormat(locales[language], {
     weekday: "long",
     day: "numeric",
     month: "long",
     year: "numeric",
   }).format(now);
   const timezone =
-    new Intl.DateTimeFormat("id-ID", { timeZoneName: "short" })
+    new Intl.DateTimeFormat(locales[language], { timeZoneName: "short" })
       .formatToParts(now)
-      .find((part) => part.type === "timeZoneName")?.value ?? "Lokal";
+      .find((part) => part.type === "timeZoneName")?.value ?? "Local";
   const hours = String(now.getHours()).padStart(2, "0");
   const minutes = String(now.getMinutes()).padStart(2, "0");
   const seconds = String(now.getSeconds()).padStart(2, "0");
@@ -29,10 +32,10 @@ function LocalClock() {
   const secondAngle = now.getSeconds() * 6;
 
   return (
-    <aside className="local-clock" aria-label="Tanggal dan waktu lokal">
+    <aside className="local-clock" aria-label={t("localClockLabel")}>
       <div className="local-clock-heading">
         <span className="local-clock-indicator" aria-hidden="true" />
-        <span>WAKTU LOKAL</span>
+        <span>{t("localTime")}</span>
         <span className="local-clock-zone">{timezone}</span>
       </div>
       <div className="local-clock-content">
@@ -66,35 +69,34 @@ function LocalClock() {
 }
 
 export default function Hero() {
+  const { language, t } = useLanguage();
+
   return (
     <section className="hero-section section-anchor" id="beranda">
       <div className="hero-glow" aria-hidden="true" />
       <div className="container-wide hero-grid">
         <div className="hero-copy">
-          <p className="eyebrow"><span className="status-dot" /> Portofolio personal</p>
+          <p className="eyebrow"><span className="status-dot" /> {t("portfolio")}</p>
           <h1>
             Sokhibul
             <br />
             <span className="text-gradient">Amin.</span>
           </h1>
-          <p className="hero-subtitle">S1 Teknik Informatika</p>
-          <p className="hero-description">
-            Tempat mendokumentasikan berbagai karya, proyek, pengalaman, dan
-            perjalanan belajar.
-          </p>
+          <p className="hero-subtitle">{t("degree")}</p>
+          <p className="hero-description">{t("heroDescription")}</p>
           <div className="hero-actions">
             <a className="button button-primary" href="#projek">
-              Jelajahi Karya <ArrowDown size={16} />
+              {t("explore")} <ArrowDown size={16} />
             </a>
             <a className="button button-secondary" href="#tentang">
-              Tentang Saya <ArrowUpRight size={16} />
+              {t("aboutMe")} <ArrowUpRight size={16} />
             </a>
           </div>
           <p className="hero-note">
             <Sparkles size={15} aria-hidden="true" />
-            Catatan perjalanan dalam teknologi dan kreativitas
+            {t("journey")}
           </p>
-          <LocalClock />
+          <LocalClock language={language} t={t} />
         </div>
 
         <div className="hero-visual">
@@ -102,20 +104,20 @@ export default function Hero() {
           <div className="hero-orbit hero-orbit-two" aria-hidden="true" />
           <div className="portrait-frame">
             <div className="portrait-frame-top">
-              <span className="portrait-kicker">CATATAN PERJALANAN</span>
+              <span className="portrait-kicker">{t("portraitKicker")}</span>
               <span className="portrait-sparkle" aria-hidden="true">✦</span>
             </div>
             <img
               className="profile-photo"
-              src="/images/profile/portrait.webp"
-              alt="Foto Sokhibul Amin"
+              src="/images/profile-portrait.webp"
+              alt={t("portraitAlt")}
               width="777"
               height="800"
             />
-            <p className="portrait-caption">Merekam proses, merayakan karya.</p>
+            <p className="portrait-caption">{t("portraitCaption")}</p>
           </div>
-          <span className="floating-label floating-label-top">Informatika</span>
-          <span className="floating-label floating-label-bottom">Karya · Belajar · Bertumbuh</span>
+          <span className="floating-label floating-label-top">{t("informatika")}</span>
+          <span className="floating-label floating-label-bottom">{t("worksLearnGrow")}</span>
         </div>
       </div>
     </section>

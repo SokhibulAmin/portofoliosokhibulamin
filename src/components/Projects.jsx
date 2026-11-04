@@ -14,13 +14,23 @@ import {
   X,
 } from "lucide-react";
 import { projectCategories, projects } from "../data/projects.js";
+import { getProjectTranslation, useLanguage } from "../LanguageContext.jsx";
+
+const categoryTranslationKeys = {
+  "Web Development": "categoryWeb",
+  "Excel & Data": "categoryData",
+  "Academic Projects": "categoryAcademic",
+  "Design & Creative": "categoryCreative",
+  "Documents & Reports": "categoryReports",
+  "Other Works": "categoryOther",
+};
 
 const categoryIcons = {
   tutoring: Code2,
   spreadsheet: BarChart3,
 };
 
-function ProjectArtwork({ project, image, onOpen, onPrevious, onNext }) {
+function ProjectArtwork({ project, image, onOpen, onPrevious, onNext, t, language }) {
   if (!image) {
     const Icon = categoryIcons[project.visual] ?? Code2;
     return (
@@ -40,7 +50,9 @@ function ProjectArtwork({ project, image, onOpen, onPrevious, onNext }) {
         className="project-image-open"
         type="button"
         onClick={onOpen}
-        aria-label={`Perbesar gambar ${project.title}, slide ${image.index + 1} dari ${images.length}`}
+        aria-label={language === "zh"
+          ? `${project.title}，${t("slideOf")}${image.index + 1}张`
+          : `${t("zoomImage")} ${project.title}, ${t("slideOf")} ${image.index + 1} of ${images.length}`}
       >
         <img
           className="project-image"
@@ -51,14 +63,14 @@ function ProjectArtwork({ project, image, onOpen, onPrevious, onNext }) {
           loading="lazy"
           decoding="async"
         />
-        <span className="project-image-hint">Klik untuk perbesar</span>
+        <span className="project-image-hint">{t("clickToZoom")}</span>
       </button>
       {images.length > 1 && (
         <>
           <button
             className="project-slide-arrow project-slide-previous"
             type="button"
-            aria-label="Gambar proyek sebelumnya"
+            aria-label={t("previousProjectImage")}
             onClick={onPrevious}
           >
             <ArrowLeft size={16} aria-hidden="true" />
@@ -66,7 +78,7 @@ function ProjectArtwork({ project, image, onOpen, onPrevious, onNext }) {
           <button
             className="project-slide-arrow project-slide-next"
             type="button"
-            aria-label="Gambar proyek berikutnya"
+            aria-label={t("nextProjectImage")}
             onClick={onNext}
           >
             <ArrowRight size={16} aria-hidden="true" />
@@ -80,7 +92,7 @@ function ProjectArtwork({ project, image, onOpen, onPrevious, onNext }) {
   );
 }
 
-function ProjectCard({ project, onOpenViewer }) {
+function ProjectCard({ project, onOpenViewer, t, language }) {
   const images = project.images ?? [];
   const [activeIndex, setActiveIndex] = useState(0);
   const image = images.length > 0
@@ -101,34 +113,38 @@ function ProjectCard({ project, onOpenViewer }) {
           onOpen={() => onOpenViewer(project.title, images, activeIndex)}
           onPrevious={() => moveSlide(-1)}
           onNext={() => moveSlide(1)}
+          t={t}
+          language={language}
         />
         {images.length > 0 && (
-          <div className="project-slide-dots" aria-label="Pilih gambar proyek">
+          <div className="project-slide-dots" aria-label={t("chooseProjectImage")}>
             {images.map((slide, index) => (
               <button
                 className={`project-slide-dot${index === activeIndex ? " is-active" : ""}`}
                 key={slide.src}
                 type="button"
-                aria-label={`Tampilkan slide ${index + 1} dari ${project.title}`}
+                aria-label={language === "zh"
+                  ? `${project.title}，${t("showSlide")}${index + 1}张图片`
+                  : `${t("showSlide")} ${index + 1} ${language === "id" ? "dari" : "of"} ${images.length} ${language === "id" ? "untuk" : "for"} ${project.title}`}
                 aria-current={index === activeIndex ? "true" : undefined}
                 onClick={() => setActiveIndex(index)}
               />
             ))}
           </div>
         )}
-        <span className="project-category">{project.category}</span>
+        <span className="project-category">{t(categoryTranslationKeys[project.category])}</span>
       </div>
       <div className="project-content">
         <h3>{project.title}</h3>
         <p>{project.description}</p>
         <div className="project-tools">
-          <strong>Tools</strong>
+          <strong>{t("tools")}</strong>
           {project.tools.length > 0 ? (
             <div className="tag-list">
               {project.tools.map((tool) => <span className="tech-tag" key={tool}>{tool}</span>)}
             </div>
           ) : (
-            <span className="tools-pending">Belum dicatat</span>
+            <span className="tools-pending">{t("notRecorded")}</span>
           )}
         </div>
       </div>
@@ -136,12 +152,12 @@ function ProjectCard({ project, onOpenViewer }) {
         <div className="project-links">
           {project.demoUrl && (
             <a className="project-link" href={project.demoUrl} target="_blank" rel="noreferrer">
-              Demo <ExternalLink size={15} aria-hidden="true" />
+              {t("demo")} <ExternalLink size={15} aria-hidden="true" />
             </a>
           )}
           {project.repositoryUrl && (
             <a className="project-link" href={project.repositoryUrl} target="_blank" rel="noreferrer">
-              Repository <Github size={15} aria-hidden="true" />
+              {t("repository")} <Github size={15} aria-hidden="true" />
             </a>
           )}
           {project.files?.map((file) => (
@@ -161,13 +177,13 @@ function ProjectCard({ project, onOpenViewer }) {
           ))}
         </div>
       ) : (
-        <p className="project-links-empty">Tautan demo atau repository belum tersedia.</p>
+        <p className="project-links-empty">{t("linksUnavailable")}</p>
       )}
     </article>
   );
 }
 
-function ImageViewer({ viewer, dialogRef, onClose, onMove, zoom, setZoom }) {
+function ImageViewer({ viewer, dialogRef, onClose, onMove, zoom, setZoom, t, language }) {
   const image = viewer?.images[viewer.index];
 
   useEffect(() => {
@@ -184,7 +200,7 @@ function ImageViewer({ viewer, dialogRef, onClose, onMove, zoom, setZoom }) {
     <dialog
       className="image-viewer"
       ref={dialogRef}
-      aria-label={`Galeri gambar ${viewer.title}`}
+      aria-label={`${t("imageGallery")} ${viewer.title}`}
       onClose={onClose}
       onClick={(event) => {
         if (event.target === event.currentTarget) {
@@ -202,7 +218,7 @@ function ImageViewer({ viewer, dialogRef, onClose, onMove, zoom, setZoom }) {
           <button
             className="viewer-control"
             type="button"
-            aria-label="Perkecil gambar"
+            aria-label={t("zoomOut")}
             disabled={zoom <= 1}
             onClick={() => setZoom((current) => Math.max(1, current - 0.5))}
           >
@@ -211,7 +227,7 @@ function ImageViewer({ viewer, dialogRef, onClose, onMove, zoom, setZoom }) {
           <button
             className="viewer-control viewer-zoom-reset"
             type="button"
-            aria-label={`Atur ulang zoom, saat ini ${zoom * 100}%`}
+            aria-label={`${t("resetZoom")} ${zoom * 100}%`}
             onClick={() => setZoom(1)}
           >
             {zoom * 100}%
@@ -220,7 +236,7 @@ function ImageViewer({ viewer, dialogRef, onClose, onMove, zoom, setZoom }) {
           <button
             className="viewer-control"
             type="button"
-            aria-label="Perbesar gambar"
+            aria-label={t("zoomIn")}
             disabled={zoom >= 3}
             onClick={() => setZoom((current) => Math.min(3, current + 0.5))}
           >
@@ -229,7 +245,7 @@ function ImageViewer({ viewer, dialogRef, onClose, onMove, zoom, setZoom }) {
           <button
             className="viewer-control viewer-close"
             type="button"
-            aria-label="Tutup galeri gambar"
+            aria-label={t("closeGallery")}
             onClick={() => dialogRef.current?.close()}
           >
             <X size={18} aria-hidden="true" />
@@ -241,7 +257,7 @@ function ImageViewer({ viewer, dialogRef, onClose, onMove, zoom, setZoom }) {
           <button
             className="viewer-slide-control"
             type="button"
-            aria-label="Gambar sebelumnya"
+            aria-label={t("previousImage")}
             onClick={() => onMove(-1)}
           >
             <ArrowLeft size={20} aria-hidden="true" />
@@ -261,7 +277,7 @@ function ImageViewer({ viewer, dialogRef, onClose, onMove, zoom, setZoom }) {
           <button
             className="viewer-slide-control"
             type="button"
-            aria-label="Gambar berikutnya"
+            aria-label={t("nextImage")}
             onClick={() => onMove(1)}
           >
             <ArrowRight size={20} aria-hidden="true" />
@@ -279,14 +295,31 @@ function ImageViewer({ viewer, dialogRef, onClose, onMove, zoom, setZoom }) {
 }
 
 export default function Projects() {
-  const [activeCategory, setActiveCategory] = useState("Semua");
+  const { language, t } = useLanguage();
+  const [activeCategory, setActiveCategory] = useState("all");
   const [viewer, setViewer] = useState(null);
   const [zoom, setZoom] = useState(1);
   const dialogRef = useRef(null);
-  const filters = ["Semua", ...projectCategories];
-  const visibleProjects = activeCategory === "Semua"
+  const filters = ["all", ...projectCategories];
+  const visibleProjects = (activeCategory === "all"
     ? projects
-    : projects.filter((project) => project.category === activeCategory);
+    : projects.filter((project) => project.category === activeCategory)
+  ).map((project) => {
+    const translated = getProjectTranslation(language, project.id);
+    return {
+      ...project,
+      ...translated,
+      category: project.category,
+      images: project.images.map((image, index) => ({
+        ...image,
+        alt: translated.images?.[index] ?? image.alt,
+      })),
+      files: project.files?.map((file, index) => ({
+        ...file,
+        label: translated.files?.[index] ?? file.label,
+      })),
+    };
+  });
 
   function openViewer(title, images, index) {
     setZoom(1);
@@ -306,14 +339,12 @@ export default function Projects() {
       <div className="container-wide">
         <div className="section-heading section-heading-row">
           <div>
-            <p className="eyebrow">02 / Karya pilihan</p>
-            <h2>Proyek yang <span className="text-gradient">terdokumentasi.</span></h2>
+            <p className="eyebrow">{t("projectsEyebrow")}</p>
+            <h2>{t("projectsTitle")} <span className="text-gradient">{t("projectsTitleAccent")}</span></h2>
           </div>
-          <p className="heading-note">
-            Klik gambar untuk memperbesar atau gunakan panah untuk menjelajahi slide.
-          </p>
+          <p className="heading-note">{t("projectsNote")}</p>
         </div>
-        <div className="project-filters" role="group" aria-label="Filter kategori proyek">
+        <div className="project-filters" role="group" aria-label={t("filterProjects")}>
           {filters.map((category) => (
             <button
               className={`filter-button${category === activeCategory ? " is-active" : ""}`}
@@ -322,23 +353,27 @@ export default function Projects() {
               aria-pressed={category === activeCategory}
               onClick={() => setActiveCategory(category)}
             >
-              {category}
+              {category === "all" ? t("all") : t(categoryTranslationKeys[category])}
             </button>
           ))}
         </div>
         {visibleProjects.length > 0 ? (
           <div className="projects-grid" aria-live="polite">
             {visibleProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} onOpenViewer={openViewer} />
+              <ProjectCard
+                key={project.id}
+                project={project}
+                onOpenViewer={openViewer}
+                t={t}
+                language={language}
+              />
             ))}
           </div>
         ) : (
-          <p className="projects-empty" role="status">
-            Belum ada karya yang ditambahkan pada kategori ini.
-          </p>
+          <p className="projects-empty" role="status">{t("noProjects")}</p>
         )}
         <a className="text-link projects-contact-link" href="#kontak">
-          Tanyakan tentang karya <ArrowUpRight size={16} aria-hidden="true" />
+          {t("askAboutWork")} <ArrowUpRight size={16} aria-hidden="true" />
         </a>
       </div>
       <ImageViewer
@@ -351,6 +386,8 @@ export default function Projects() {
         onMove={moveViewer}
         zoom={zoom}
         setZoom={setZoom}
+        t={t}
+        language={language}
       />
     </section>
   );

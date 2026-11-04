@@ -1,46 +1,68 @@
 import { Award, ExternalLink, FileText, LockKeyhole } from "lucide-react";
-
-const certificates = [
-  {
-    title: "Sertifikat Magang",
-    organization: "Dinas Komunikasi dan Informatika Kabupaten Lamongan",
-    detail: "01 November – 31 Desember 2024",
-    href: "/images/certificates/sertifikat-magang.webp",
-    linkLabel: "Buka pratinjau sertifikat",
-    fileType: "image",
-  },
-  {
-    title: "The Art of Data Visualization: Spreadsheet & Google Studio for Beginner",
-    organization: "Center for Digital Society, Universitas Gadjah Mada",
-    detail: "Digital Practice · 24–25 Juli 2023",
-    href: "/documents/sertifikat-praktik-data.pdf",
-    linkLabel: "Buka sertifikat PDF",
-    fileType: "document",
-  },
-  {
-    title: "Sertifikat HKI",
-    organization: "Proyek aplikasi prediksi penjualan beras",
-    detail: "Ringkasan dicantumkan; dokumen asli tidak ditautkan karena berisi data pribadi para pencipta.",
-    href: null,
-  },
-];
+import { useLanguage } from "../LanguageContext.jsx";
 
 export default function Certificates() {
+  const { t } = useLanguage();
+  const certificates = [
+    {
+      title: t("internshipCertificate"),
+      organization: t("internshipOrganization"),
+      detail: t("internshipDate"),
+      previewSrc: "/images/certificate-internship.webp",
+      href: "/images/certificate-internship.webp",
+      linkLabel: t("internshipPreview"),
+      fileType: "image",
+    },
+    {
+      title: t("dataCertificate"),
+      organization: t("dataOrganization"),
+      detail: t("dataCertificateDate"),
+      previewSrc: "/images/certificate-data.webp",
+      href: "/documents/sertifikat-praktik-data.pdf",
+      linkLabel: t("pdfCertificate"),
+      fileType: "document",
+    },
+    {
+      title: t("ipCertificate"),
+      organization: t("riceProject"),
+      detail: t("privateDocument"),
+      previewSrc: "/images/certificate-ip-preview.webp",
+      href: "/images/certificate-ip-preview.webp",
+      linkLabel: t("privateCertificatePreview"),
+      fileType: "image",
+      isPrivate: true,
+    },
+  ];
+
   return (
     <section className="section section-tinted section-anchor" id="sertifikat">
       <div className="container-wide">
         <div className="section-heading section-heading-row">
           <div>
-            <p className="eyebrow">05 / Certificates</p>
-            <h2>Dokumen <span className="text-gradient">pengalaman.</span></h2>
+            <p className="eyebrow">{t("certificatesEyebrow")}</p>
+            <h2>{t("certificatesTitle")} <span className="text-gradient">{t("certificatesTitleAccent")}</span></h2>
           </div>
-          <p className="heading-note">
-            Pratinjau sertifikat magang sudah menyamarkan QR dan identitas penanda tangan.
-          </p>
+          <p className="heading-note">{t("certificatesNote")}</p>
         </div>
         <div className="certificates-grid">
-          {certificates.map(({ title, organization, detail, href, linkLabel, fileType }) => (
+          {certificates.map(({ title, organization, detail, previewSrc, href, linkLabel, fileType, isPrivate }) => (
             <article className="certificate-card" key={title}>
+              {previewSrc && (
+                <a
+                  className="certificate-preview"
+                  href={previewSrc}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`${t("openCertificatePreview")}: ${title}`}
+                >
+                  <img
+                    src={previewSrc}
+                    alt={title}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </a>
+              )}
               <span className="certificate-icon"><Award size={21} aria-hidden="true" /></span>
               <div className="certificate-copy">
                 <h3>{title}</h3>
@@ -60,11 +82,11 @@ export default function Certificates() {
                   </a>
                 )}
               </div>
-              {!href && (
+              {isPrivate && (
                 <LockKeyhole
                   className="certificate-private-icon"
                   size={16}
-                  aria-label="Dokumen privat"
+                  aria-label={t("privateDocumentLabel")}
                 />
               )}
             </article>
