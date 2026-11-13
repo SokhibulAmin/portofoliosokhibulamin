@@ -117,6 +117,12 @@ button { font: inherit; }
 .floating-label { position: absolute; z-index: 2; padding: 9px 12px; border: 1px solid rgba(255, 214, 176, .14); border-radius: 6px; color: #e7d8d6; background: #1b1722; box-shadow: 0 10px 28px rgba(0, 0, 0, .2); font-size: 10px; }
 .floating-label-top { top: 54px; right: 0; color: var(--gold); }
 .floating-label-bottom { bottom: 43px; left: 0; }
+.robot-buddy { position: absolute; z-index: 3; right: -14px; bottom: 11px; display: grid; width: 140px; height: 172px; place-items: center; padding: 0; border: 0; border-radius: 14px; background: transparent; cursor: pointer; touch-action: manipulation; }
+.robot-buddy canvas { display: block; width: 100%; height: 100%; }
+.robot-buddy:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.robot-prompt { position: absolute; right: 14px; bottom: 3px; padding: 6px 9px; border: 1px solid rgba(255, 197, 110, .24); border-radius: 999px; color: var(--peach); background: rgba(27, 23, 34, .92); box-shadow: 0 6px 16px rgba(0, 0, 0, .2); font-size: 9px; pointer-events: none; }
+.robot-fallback { display: grid; width: 100%; height: 100%; place-items: center; font-size: 56px; }
+.robot-buddy-loading { display: grid; place-items: center; color: var(--gold); font-size: 58px; }
 
 [data-theme="light"] {
   color-scheme: light;
@@ -167,6 +173,10 @@ button { font: inherit; }
 [data-theme="light"] .project-artwork { background: #e8e1da; }
 [data-theme="light"] .project-content > p { color: #716974; }
 [data-theme="light"] .project-tools > strong { color: #514751; }
+[data-theme="light"] .project-tool-details { color: #625a64; }
+[data-theme="light"] .project-tool-details li strong { color: #423943; }
+[data-theme="light"] .project-deployment > strong { color: #514751; }
+[data-theme="light"] .deployment-status { border-color: rgba(41, 126, 67, .25); color: #28683a; background: rgba(75, 170, 105, .1); }
 [data-theme="light"] .tech-tag { border-color: rgba(68, 51, 38, .12); color: #625a64; background: rgba(255, 255, 255, .65); }
 [data-theme="light"] .tools-pending, [data-theme="light"] .project-links-empty { color: #716974; }
 [data-theme="light"] .projects-empty { border-color: rgba(68, 51, 38, .2); }
@@ -274,6 +284,14 @@ button { font: inherit; }
 .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 7px; }
 .tech-tag { padding: 5px 7px; border: 1px solid rgba(255, 214, 176, .1); border-radius: 4px; color: #c0b3b8; background: rgba(255, 255, 255, .02); font-size: 9px; }
 .tools-pending { margin-left: 7px; color: #8f858d; font-size: 9px; }
+.project-tool-details { margin-top: 9px; color: #c0b3b8; font-size: 10px; line-height: 1.6; }
+.project-tool-details summary { width: fit-content; color: var(--gold); cursor: pointer; font-size: 9px; }
+.project-tool-details ul { display: grid; gap: 8px; margin: 9px 0 0; padding: 0; list-style: none; }
+.project-tool-details li { display: grid; gap: 2px; }
+.project-tool-details li strong { color: #e4d7d4; font-size: 10px; font-weight: 600; }
+.project-deployment { display: flex; align-items: center; gap: 8px; margin-top: 14px; font-size: 9px; }
+.project-deployment > strong { color: #d3c4c5; font-weight: 600; }
+.deployment-status { padding: 4px 7px; border: 1px solid rgba(120, 209, 147, .24); border-radius: 999px; color: #9de0b0; background: rgba(75, 170, 105, .09); }
 .project-links { display: flex; flex-wrap: wrap; gap: 14px; padding: 17px 16px 15px; }
 .project-link { display: inline-flex; align-items: center; gap: 7px; color: var(--gold); font-size: 10px; font-weight: 600; }
 .project-link:hover { color: var(--peach); }
@@ -413,6 +431,8 @@ button { font: inherit; }
   .hero-orbit-two { width: 390px; height: 390px; }
   .floating-label-top { top: 34px; right: 0; }
   .floating-label-bottom { bottom: 25px; left: 0; }
+  .robot-buddy { right: -5px; bottom: 5px; width: 124px; height: 156px; }
+  .robot-prompt { right: 8px; }
   .about-layout { grid-template-columns: 1fr; gap: 27px; }
   .about-lead { font-size: 19px; }
   .project-filters { flex-wrap: nowrap; overflow-x: auto; padding: 2px 0 8px; scrollbar-width: thin; }

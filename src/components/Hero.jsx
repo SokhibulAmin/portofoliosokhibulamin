@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { ArrowDown, ArrowUpRight, Sparkles } from "lucide-react";
 import { useLanguage } from "../LanguageContext.jsx";
+
+const RobotBuddy = lazy(() => import("./RobotBuddy.jsx"));
 
 const locales = { id: "id-ID", en: "en-US", zh: "zh-CN" };
 
@@ -118,6 +120,9 @@ export default function Hero() {
           </div>
           <span className="floating-label floating-label-top">{t("informatika")}</span>
           <span className="floating-label floating-label-bottom">{t("worksLearnGrow")}</span>
+          <Suspense fallback={<div className="robot-buddy robot-buddy-loading" aria-hidden="true">🤖</div>}>
+            <RobotBuddy />
+          </Suspense>
         </div>
       </div>
     </section>

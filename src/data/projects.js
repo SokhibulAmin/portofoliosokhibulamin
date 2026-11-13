@@ -10,11 +10,39 @@ export const projectCategories = [
 export const projects = [
   {
     id: "bimbel-english-private",
-    title: "Website Bimbel English Private",
+    title: "EduPath Academy — Les Privat Bahasa Inggris",
     category: "Web Development",
-    description: "Dokumentasi tampilan website bimbingan Bahasa Inggris privat.",
+    description:
+      "Landing page layanan les privat Bahasa Inggris untuk siswa SD, SMP, SMA, mahasiswa, dan dewasa. Memuat program belajar, paket harga, keunggulan layanan, FAQ, kontak WhatsApp, tautan media sosial, serta pilihan tema terang dan gelap dengan desain responsif untuk desktop dan mobile.",
     visual: "tutoring",
-    tools: [],
+    tools: ["React", "Vite", "Tailwind CSS", "JavaScript / JSX", "Node.js dan npm", "Vercel"],
+    toolDetails: [
+      {
+        name: "React",
+        description: "Membangun antarmuka website yang modular dan interaktif.",
+      },
+      {
+        name: "Vite",
+        description: "Build tool dan dev server untuk menjalankan proyek serta memudahkan development dan production build.",
+      },
+      {
+        name: "Tailwind CSS",
+        description: "Styling modern dan responsif agar tampilan lebih konsisten dan cepat dibuat.",
+      },
+      {
+        name: "JavaScript / JSX",
+        description: "Logika website, data program, FAQ, CTA, dan interaksi antarmuka.",
+      },
+      {
+        name: "Node.js dan npm",
+        description: "Menginstal dependency, menjalankan proyek lokal, dan membuat production build.",
+      },
+      {
+        name: "Vercel",
+        description: "Platform yang digunakan untuk deployment website secara online.",
+      },
+    ],
+    deploymentStatus: "deployed",
     images: [
       { src: "/images/project-english-tutoring-01.webp", alt: "Halaman utama website bimbel Bahasa Inggris", width: 1400, height: 640 },
       { src: "/images/project-english-tutoring-02.webp", alt: "Tampilan terang website bimbel Bahasa Inggris", width: 1400, height: 640 },
@@ -24,7 +52,7 @@ export const projects = [
       { src: "/images/project-english-tutoring-06.webp", alt: "Cuplikan halaman website bimbel Bahasa Inggris", width: 1400, height: 639 },
       { src: "/images/project-english-tutoring-07.webp", alt: "Bagian ajakan dan penutup website bimbel Bahasa Inggris", width: 1400, height: 638 },
     ],
-    demoUrl: null,
+    demoUrl: "https://edupath-academy1.vercel.app/",
     repositoryUrl: null,
   },
   {

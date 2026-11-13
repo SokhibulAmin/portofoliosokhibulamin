@@ -209,7 +209,28 @@ function ProjectCard({ project, onOpenViewer, t, language }) {
           ) : (
             <span className="tools-pending">{t("notRecorded")}</span>
           )}
+          {project.toolDetails?.length > 0 && (
+            <details className="project-tool-details">
+              <summary>{t("toolDetails")}</summary>
+              <ul>
+                {project.toolDetails.map((tool) => (
+                  <li key={tool.name}>
+                    <strong>{tool.name}</strong>
+                    <span>{tool.description}</span>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          )}
         </div>
+        {project.deploymentStatus && (
+          <div className="project-deployment">
+            <strong>{t("deploymentStatus")}</strong>
+            <span className={`deployment-status deployment-status-${project.deploymentStatus}`}>
+              {t(project.deploymentStatus)}
+            </span>
+          </div>
+        )}
       </div>
       {hasLinks ? (
         <div className="project-links">
