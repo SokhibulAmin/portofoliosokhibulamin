@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, CalendarDays, MapPin } from "lucide-react";
 import { useLanguage } from "../LanguageContext.jsx";
+import ScrollReveal from "./ScrollReveal.jsx";
 
 const internshipPhotos = [
   { width: 827, height: 465, alt: "internshipPhoto1" },
@@ -75,97 +76,99 @@ export default function Experience() {
           <p className="eyebrow">{t("experienceEyebrow")}</p>
           <h2>{t("experienceTitle")} <span className="text-gradient">{t("experienceTitleAccent")}</span></h2>
         </div>
-        <article className="experience-card">
-          <div className="experience-marker" aria-hidden="true" />
-          <div className="experience-content">
-            <div className="experience-topline">
-              <span className="experience-badge">{t("internship")}</span>
-              <span className="experience-period">
-                <CalendarDays size={15} aria-hidden="true" />
-                {period}
-              </span>
-            </div>
-            <h3>Dinas Komunikasi dan Informatika</h3>
-            <p className="experience-role">{t("lamongan")}</p>
-            <p className="body-copy">{t("experienceDescription")}</p>
-            <div className="experience-location">
-              <MapPin size={15} aria-hidden="true" /> {t("lamongan")}
-            </div>
-            <div className="experience-documentation">
-              <h4>{t("internshipDocumentation")}</h4>
-              <div
-                className="experience-slider"
-                ref={sliderRef}
-                aria-roledescription="carousel"
-                aria-label={t("internshipDocumentation")}
-                onPointerEnter={() => setIsHovered(true)}
-                onPointerLeave={() => setIsHovered(false)}
-                onFocusCapture={() => setIsFocused(true)}
-                onBlurCapture={(event) => {
-                  if (!event.currentTarget.contains(event.relatedTarget)) {
-                    setIsFocused(false);
-                  }
-                }}
-              >
-                <a
-                  className="experience-photo"
-                  href={photoSrc}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={() => setHasInteracted(true)}
-                  aria-label={t("openInternshipPhoto", { photo: t(photo.alt) })}
+        <ScrollReveal>
+          <article className="experience-card">
+            <div className="experience-marker" aria-hidden="true" />
+            <div className="experience-content">
+              <div className="experience-topline">
+                <span className="experience-badge">{t("internship")}</span>
+                <span className="experience-period">
+                  <CalendarDays size={15} aria-hidden="true" />
+                  {period}
+                </span>
+              </div>
+              <h3>Dinas Komunikasi dan Informatika</h3>
+              <p className="experience-role">{t("lamongan")}</p>
+              <p className="body-copy">{t("experienceDescription")}</p>
+              <div className="experience-location">
+                <MapPin size={15} aria-hidden="true" /> {t("lamongan")}
+              </div>
+              <div className="experience-documentation">
+                <h4>{t("internshipDocumentation")}</h4>
+                <div
+                  className="experience-slider"
+                  ref={sliderRef}
+                  aria-roledescription="carousel"
+                  aria-label={t("internshipDocumentation")}
+                  onPointerEnter={() => setIsHovered(true)}
+                  onPointerLeave={() => setIsHovered(false)}
+                  onFocusCapture={() => setIsFocused(true)}
+                  onBlurCapture={(event) => {
+                    if (!event.currentTarget.contains(event.relatedTarget)) {
+                      setIsFocused(false);
+                    }
+                  }}
                 >
-                  <img
-                    src={photoSrc}
-                    alt={t(photo.alt)}
-                    width={photo.width}
-                    height={photo.height}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </a>
-                <button
-                  className="experience-slide-arrow experience-slide-previous"
-                  type="button"
-                  aria-label={t("previousInternshipPhoto")}
-                  onClick={() => movePhoto(-1)}
-                >
-                  <ArrowLeft size={18} aria-hidden="true" />
-                </button>
-                <button
-                  className="experience-slide-arrow experience-slide-next"
-                  type="button"
-                  aria-label={t("nextInternshipPhoto")}
-                  onClick={() => movePhoto(1)}
-                >
-                  <ArrowRight size={18} aria-hidden="true" />
-                </button>
-                <div className="experience-slider-caption">
-                  <span>{t(photo.alt)}</span>
-                  <span aria-live="polite">{activePhoto + 1} / {internshipPhotos.length}</span>
-                </div>
-                <div className="experience-slide-dots" role="group" aria-label={t("chooseProjectImage")}>
-                  {internshipPhotos.map((item, index) => (
-                    <button
-                      className={`project-slide-dot${index === activePhoto ? " is-active" : ""}`}
-                      key={item.alt}
-                      type="button"
-                      aria-label={t("showInternshipPhoto", { number: index + 1 })}
-                      aria-current={index === activePhoto ? "true" : undefined}
-                      onClick={() => {
-                        setHasInteracted(true);
-                        setActivePhoto(index);
-                      }}
+                  <a
+                    className="experience-photo"
+                    href={photoSrc}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={() => setHasInteracted(true)}
+                    aria-label={t("openInternshipPhoto", { photo: t(photo.alt) })}
+                  >
+                    <img
+                      src={photoSrc}
+                      alt={t(photo.alt)}
+                      width={photo.width}
+                      height={photo.height}
+                      loading="lazy"
+                      decoding="async"
                     />
-                  ))}
+                  </a>
+                  <button
+                    className="experience-slide-arrow experience-slide-previous"
+                    type="button"
+                    aria-label={t("previousInternshipPhoto")}
+                    onClick={() => movePhoto(-1)}
+                  >
+                    <ArrowLeft size={18} aria-hidden="true" />
+                  </button>
+                  <button
+                    className="experience-slide-arrow experience-slide-next"
+                    type="button"
+                    aria-label={t("nextInternshipPhoto")}
+                    onClick={() => movePhoto(1)}
+                  >
+                    <ArrowRight size={18} aria-hidden="true" />
+                  </button>
+                  <div className="experience-slider-caption">
+                    <span>{t(photo.alt)}</span>
+                    <span aria-live="polite">{activePhoto + 1} / {internshipPhotos.length}</span>
+                  </div>
+                  <div className="experience-slide-dots" role="group" aria-label={t("chooseProjectImage")}>
+                    {internshipPhotos.map((item, index) => (
+                      <button
+                        className={`project-slide-dot${index === activePhoto ? " is-active" : ""}`}
+                        key={item.alt}
+                        type="button"
+                        aria-label={t("showInternshipPhoto", { number: index + 1 })}
+                        aria-current={index === activePhoto ? "true" : undefined}
+                        onClick={() => {
+                          setHasInteracted(true);
+                          setActivePhoto(index);
+                        }}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
+              <a className="text-link" href="#kontak">
+                {t("askMore")} <ArrowUpRight size={16} />
+              </a>
             </div>
-            <a className="text-link" href="#kontak">
-              {t("askMore")} <ArrowUpRight size={16} />
-            </a>
-          </div>
-        </article>
+          </article>
+        </ScrollReveal>
       </div>
     </section>
   );

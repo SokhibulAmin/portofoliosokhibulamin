@@ -1,5 +1,6 @@
 import { BarChart3, BrainCircuit, Code2 } from "lucide-react";
 import { useLanguage } from "../LanguageContext.jsx";
+import ScrollReveal from "./ScrollReveal.jsx";
 
 export default function Skills() {
   const { t } = useLanguage();
@@ -20,12 +21,14 @@ export default function Skills() {
           <p className="heading-note">{t("skillsNote")}</p>
         </div>
         <div className="skills-grid">
-          {skills.map(({ icon: Icon, name, detail }) => (
-            <article className="skill-card" key={name}>
-              <span className="skill-icon"><Icon size={22} aria-hidden="true" /></span>
-              <h3>{name}</h3>
-              <p>{detail}</p>
-            </article>
+          {skills.map(({ icon: Icon, name, detail }, index) => (
+            <ScrollReveal delay={index * 110} key={name}>
+              <article className="skill-card">
+                <span className="skill-icon"><Icon size={22} aria-hidden="true" /></span>
+                <h3>{name}</h3>
+                <p>{detail}</p>
+              </article>
+            </ScrollReveal>
           ))}
         </div>
       </div>

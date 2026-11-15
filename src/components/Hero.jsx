@@ -1,19 +1,12 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowDown, ArrowUpRight, Sparkles } from "lucide-react";
 import { useLanguage } from "../LanguageContext.jsx";
-
-const RobotBuddy = lazy(() => import("./RobotBuddy.jsx"));
+import ClockworkBackground from "./ClockworkBackground.jsx";
+import TechnologyMarquee from "./TechnologyMarquee.jsx";
 
 const locales = { id: "id-ID", en: "en-US", zh: "zh-CN" };
 
-function LocalClock({ language, t }) {
-  const [now, setNow] = useState(() => new Date());
-
-  useEffect(() => {
-    const intervalId = window.setInterval(() => setNow(new Date()), 1000);
-    return () => window.clearInterval(intervalId);
-  }, []);
-
+function LocalClock({ language, t, now }) {
   const date = new Intl.DateTimeFormat(locales[language], {
     weekday: "long",
     day: "numeric",
@@ -72,6 +65,14 @@ function LocalClock({ language, t }) {
 
 export default function Hero() {
   const { language, t } = useLanguage();
+  const [now, setNow] = useState(() => new Date());
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => setNow(new Date()), 1000);
+    return () => window.clearInterval(intervalId);
+  }, []);
+
+  const gearRotation = now.getTime() / 1000 * 6;
 
   return (
     <section className="hero-section section-anchor" id="beranda">
@@ -98,10 +99,11 @@ export default function Hero() {
             <Sparkles size={15} aria-hidden="true" />
             {t("journey")}
           </p>
-          <LocalClock language={language} t={t} />
+          <LocalClock language={language} t={t} now={now} />
         </div>
 
         <div className="hero-visual">
+          <ClockworkBackground rotation={gearRotation} />
           <div className="hero-orbit hero-orbit-one" aria-hidden="true" />
           <div className="hero-orbit hero-orbit-two" aria-hidden="true" />
           <div className="portrait-frame">
@@ -120,11 +122,9 @@ export default function Hero() {
           </div>
           <span className="floating-label floating-label-top">{t("informatika")}</span>
           <span className="floating-label floating-label-bottom">{t("worksLearnGrow")}</span>
-          <Suspense fallback={<div className="robot-buddy robot-buddy-loading" aria-hidden="true">🤖</div>}>
-            <RobotBuddy />
-          </Suspense>
         </div>
       </div>
+      <TechnologyMarquee />
     </section>
   );
 }

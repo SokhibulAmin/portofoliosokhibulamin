@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { projectCategories, projects } from "../data/projects.js";
 import { getProjectTranslation, useLanguage } from "../LanguageContext.jsx";
+import ScrollReveal from "./ScrollReveal.jsx";
 
 const categoryTranslationKeys = {
   "Web Development": "categoryWeb",
@@ -209,19 +210,6 @@ function ProjectCard({ project, onOpenViewer, t, language }) {
           ) : (
             <span className="tools-pending">{t("notRecorded")}</span>
           )}
-          {project.toolDetails?.length > 0 && (
-            <details className="project-tool-details">
-              <summary>{t("toolDetails")}</summary>
-              <ul>
-                {project.toolDetails.map((tool) => (
-                  <li key={tool.name}>
-                    <strong>{tool.name}</strong>
-                    <span>{tool.description}</span>
-                  </li>
-                ))}
-              </ul>
-            </details>
-          )}
         </div>
         {project.deploymentStatus && (
           <div className="project-deployment">
@@ -384,7 +372,12 @@ export default function Projects() {
   const [viewer, setViewer] = useState(null);
   const [zoom, setZoom] = useState(1);
   const dialogRef = useRef(null);
-  const filters = ["all", ...projectCategories];
+  const filters = [
+    "all",
+    ...projectCategories.filter((category) =>
+      projects.some((project) => project.category === category),
+    ),
+  ];
   const visibleProjects = (activeCategory === "all"
     ? projects
     : projects.filter((project) => project.category === activeCategory)
@@ -443,14 +436,15 @@ export default function Projects() {
         </div>
         {visibleProjects.length > 0 ? (
           <div className="projects-grid" aria-live="polite">
-            {visibleProjects.map((project) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                onOpenViewer={openViewer}
-                t={t}
-                language={language}
-              />
+            {visibleProjects.map((project, index) => (
+              <ScrollReveal delay={index * 100} key={project.id}>
+                <ProjectCard
+                  project={project}
+                  onOpenViewer={openViewer}
+                  t={t}
+                  language={language}
+                />
+              </ScrollReveal>
             ))}
           </div>
         ) : (

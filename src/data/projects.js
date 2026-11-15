@@ -12,36 +12,9 @@ export const projects = [
     id: "bimbel-english-private",
     title: "EduPath Academy — Les Privat Bahasa Inggris",
     category: "Web Development",
-    description:
-      "Landing page layanan les privat Bahasa Inggris untuk siswa SD, SMP, SMA, mahasiswa, dan dewasa. Memuat program belajar, paket harga, keunggulan layanan, FAQ, kontak WhatsApp, tautan media sosial, serta pilihan tema terang dan gelap dengan desain responsif untuk desktop dan mobile.",
+    description: "Website les privat Bahasa Inggris dengan informasi program, paket belajar, dan kontak.",
     visual: "tutoring",
-    tools: ["React", "Vite", "Tailwind CSS", "JavaScript / JSX", "Node.js dan npm", "Vercel"],
-    toolDetails: [
-      {
-        name: "React",
-        description: "Membangun antarmuka website yang modular dan interaktif.",
-      },
-      {
-        name: "Vite",
-        description: "Build tool dan dev server untuk menjalankan proyek serta memudahkan development dan production build.",
-      },
-      {
-        name: "Tailwind CSS",
-        description: "Styling modern dan responsif agar tampilan lebih konsisten dan cepat dibuat.",
-      },
-      {
-        name: "JavaScript / JSX",
-        description: "Logika website, data program, FAQ, CTA, dan interaksi antarmuka.",
-      },
-      {
-        name: "Node.js dan npm",
-        description: "Menginstal dependency, menjalankan proyek lokal, dan membuat production build.",
-      },
-      {
-        name: "Vercel",
-        description: "Platform yang digunakan untuk deployment website secara online.",
-      },
-    ],
+    tools: ["React", "Vite", "Tailwind CSS", "Vercel"],
     deploymentStatus: "deployed",
     images: [
       { src: "/images/project-english-tutoring-01.webp", alt: "Halaman utama website bimbel Bahasa Inggris", width: 1400, height: 640 },
@@ -59,7 +32,7 @@ export const projects = [
     id: "absensi-magang-diskominfo",
     title: "Website Absensi Magang DISKOMINFO",
     category: "Web Development",
-    description: "Website absensi magang dengan tampilan halaman masuk dan dashboard.",
+    description: "Website absensi magang dengan dashboard untuk admin dan pemagang.",
     images: [
       { src: "/images/project-internship-attendance-01.webp", alt: "Halaman masuk website absensi magang DISKOMINFO", width: 1400, height: 632 },
       { src: "/images/project-internship-attendance-02.webp", alt: "Beranda dashboard admin website absensi magang", width: 1400, height: 632 },
@@ -79,8 +52,7 @@ export const projects = [
     id: "dataset-amazon-disney",
     title: "Dataset Amazon Prime & Disney+",
     category: "Excel & Data",
-    description:
-      "Kumpulan dataset CSV dan workbook Excel terkait katalog film dan acara TV Amazon Prime serta Disney+.",
+    description: "Dataset film dan acara TV Amazon Prime serta Disney+ dalam format CSV dan Excel.",
     visual: "spreadsheet",
     tools: ["Excel", "CSV"],
     images: [],
@@ -97,8 +69,7 @@ export const projects = [
     id: "leafcare-pumpkin",
     title: "LeafCare Pumpkin",
     category: "Academic Projects",
-    description:
-      "Antarmuka web sistem diagnosis kesehatan tanaman labu; dokumentasi proyek menyebut deep learning.",
+    description: "Aplikasi web untuk diagnosis kesehatan tanaman labu berbasis deep learning.",
     tools: ["Python 3.9+", "Flask", "CNN / deep learning"],
     images: [
       { src: "/images/project-leafcare-01.webp", alt: "Halaman utama LeafCare Pumpkin", width: 990, height: 466 },
@@ -116,7 +87,7 @@ export const projects = [
     title: "Prediksi Penjualan Beras",
     category: "Academic Projects",
     description:
-      "Antarmuka web untuk prediksi penjualan beras yang juga menampilkan pengujian akurasi MAPE.",
+      "Aplikasi web untuk memprediksi penjualan beras dan menampilkan akurasi MAPE.",
     images: [
       { src: "/images/project-rice-prediction-01.webp", alt: "Halaman utama aplikasi prediksi penjualan beras", width: 1200, height: 540 },
       { src: "/images/project-rice-prediction-02.webp", alt: "Tampilan pengujian MAPE pada aplikasi prediksi beras", width: 1400, height: 629 },

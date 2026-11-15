@@ -1,0 +1,264 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 760" fill="none">
+  <style>
+    .gear-wheel {
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    .gear-wheel--large {
+      animation: spin-clockwise 34s linear infinite;
+    }
+
+    .gear-wheel--medium {
+      animation: spin-counterclockwise 27s linear infinite;
+    }
+
+    .gear-wheel--small {
+      animation: spin-clockwise 42s linear infinite;
+    }
+
+    .led-runner {
+      animation: led-pulse 1.2s ease-in-out infinite alternate;
+    }
+
+    @keyframes spin-clockwise {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes spin-counterclockwise {
+      to { transform: rotate(-360deg); }
+    }
+
+    @keyframes led-pulse {
+      from { opacity: .65; }
+      to { opacity: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .gear-wheel { animation: none !important; }
+      .led-runner { display: none; }
+    }
+  </style>
+
+  <g stroke="#19bce7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M296 0v67h66v75m158-64h-54v72h-55m109 108h-63v-42h-44M520 371h-48v67h-63m111 73h-79v70h-93m93 179v-53h-61v-62m-380 89h72v-50h53m-125-77h83v-47h52m-135-96h82v-55h73m-155-80h59v-49h89" stroke-opacity=".3" stroke-width="2"/>
+    <path d="M362 67h45v40m-7 33v37h-44v47m105 25h-34v-34m50 152h-38v-40m-101 127v-38h-40m176 68h-37m-147 111v-41h-43m-70 33v-37h-36m-63-72h49v-39m-47-112h57v-39m-2-96h44v-34" stroke-opacity=".5" stroke-width="1.4"/>
+    <circle cx="362" cy="67" r="4" fill="#19bce7" fill-opacity=".72" stroke="none"/>
+    <circle cx="465" cy="250" r="4" fill="#19bce7" fill-opacity=".72" stroke="none"/>
+    <circle cx="409" cy="438" r="4" fill="#19bce7" fill-opacity=".72" stroke="none"/>
+    <circle cx="337" cy="581" r="4" fill="#19bce7" fill-opacity=".72" stroke="none"/>
+    <circle cx="148" cy="461" r="4" fill="#19bce7" fill-opacity=".72" stroke="none"/>
+  </g>
+
+  <g stroke="#35d8fb" stroke-opacity=".42" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+    <path id="led-route-1" d="M296 0v67h66v75"/>
+    <path id="led-route-2" d="M520 3h-54v72h-55"/>
+    <path id="led-route-3" d="M520 270h-63v-42h-44"/>
+    <path id="led-route-4" d="M520 371h-48v67h-63"/>
+    <path id="led-route-5" d="M520 511h-79v70h-93"/>
+    <path id="led-route-6" d="M458 760v-53h-61v-62"/>
+    <path id="led-route-7" d="M0 671h72v-50h53"/>
+    <path id="led-route-8" d="M0 594h83v-47h52"/>
+    <path id="led-route-9" d="M0 421h82v-55h73"/>
+    <path id="led-route-10" d="M0 341h59v-49h89"/>
+    <path id="led-route-11" d="M362 67h45v40"/>
+    <path id="led-route-12" d="M400 133v37h-44v47"/>
+    <path id="led-route-13" d="M466 242h-34v-34"/>
+    <path id="led-route-14" d="M472 371h-38v-40"/>
+    <path id="led-route-15" d="M371 498v-38h-40"/>
+    <path id="led-route-16" d="M477 547h-37"/>
+    <path id="led-route-17" d="M373 658v-41h-43"/>
+    <path id="led-route-18" d="M263 650v-37h-36"/>
+    <path id="led-route-19" d="M138 578h49v-39"/>
+    <path id="led-route-20" d="M91 466h57v-39"/>
+    <path id="led-route-21" d="M150 274h44v-34"/>
+  </g>
+
+  <g class="led-runner">
+    <circle r="5" fill="#22d8ff" fill-opacity=".26"/>
+    <circle r="2" fill="#a5f4ff"/>
+    <animateMotion dur="5.8s" begin="-1.7s" repeatCount="indefinite"><mpath href="#led-route-1"/></animateMotion>
+  </g>
+  <g class="led-runner">
+    <circle r="5" fill="#22d8ff" fill-opacity=".26"/>
+    <circle r="2" fill="#a5f4ff"/>
+    <animateMotion dur="5.8s" begin="-4.5s" repeatCount="indefinite"><mpath href="#led-route-1"/></animateMotion>
+  </g>
+  <g class="led-runner">
+    <circle r="5" fill="#22d8ff" fill-opacity=".26"/>
+    <circle r="2" fill="#a5f4ff"/>
+    <animateMotion dur="4.6s" begin="-2.3s" repeatCount="indefinite"><mpath href="#led-route-2"/></animateMotion>
+  </g>
+  <g class="led-runner">
+    <circle r="5" fill="#22d8ff" fill-opacity=".26"/>
+    <circle r="2" fill="#a5f4ff"/>
+    <animateMotion dur="4.6s" begin="-0.6s" repeatCount="indefinite"><mpath href="#led-route-2"/></animateMotion>
+  </g>
+  <g class="led-runner">
+    <circle r="5" fill="#22d8ff" fill-opacity=".26"/>
+    <circle r="2" fill="#a5f4ff"/>
+    <animateMotion dur="5.2s" begin="-3.1s" repeatCount="indefinite"><mpath href="#led-route-3"/></animateMotion>
+  </g>
+  <g class="led-runner">
+    <circle r="5" fill="#22d8ff" fill-opacity=".26"/>
+    <circle r="2" fill="#a5f4ff"/>
+    <animateMotion dur="5.2s" begin="-0.9s" repeatCount="indefinite"><mpath href="#led-route-3"/></animateMotion>
+  </g>
+  <g class="led-runner">
+    <circle r="5" fill="#22d8ff" fill-opacity=".26"/>
+    <circle r="2" fill="#a5f4ff"/>
+    <animateMotion dur="4.2s" begin="-1.3s" repeatCount="indefinite"><mpath href="#led-route-4"/></animateMotion>
+  </g>
+  <g class="led-runner">
+    <circle r="5" fill="#22d8ff" fill-opacity=".26"/>
+    <circle r="2" fill="#a5f4ff"/>
+    <animateMotion dur="4.2s" begin="-3.2s" repeatCount="indefinite"><mpath href="#led-route-4"/></animateMotion>
+  </g>
+  <g class="led-runner">
+    <circle r="5" fill="#22d8ff" fill-opacity=".26"/>
+    <circle r="2" fill="#a5f4ff"/>
+    <animateMotion dur="6.4s" begin="-2.7s" repeatCount="indefinite"><mpath href="#led-route-5"/></animateMotion>
+  </g>
+  <g class="led-runner">
+    <circle r="5" fill="#22d8ff" fill-opacity=".26"/>
+    <circle r="2" fill="#a5f4ff"/>
+    <animateMotion dur="6.4s" begin="-5.1s" repeatCount="indefinite"><mpath href="#led-route-5"/></animateMotion>
+  </g>
+  <g class="led-runner">
+    <circle r="5" fill="#22d8ff" fill-opacity=".26"/>
+    <circle r="2" fill="#a5f4ff"/>
+    <animateMotion dur="5.6s" begin="-1.8s" repeatCount="indefinite"><mpath href="#led-route-6"/></animateMotion>
+  </g>
+  <g class="led-runner">
+    <circle r="5" fill="#22d8ff" fill-opacity=".26"/>
+    <circle r="2" fill="#a5f4ff"/>
+    <animateMotion dur="5.6s" begin="-4.2s" repeatCount="indefinite"><mpath href="#led-route-6"/></animateMotion>
+  </g>
+  <g class="led-runner">
+    <circle r="5" fill="#22d8ff" fill-opacity=".26"/>
+    <circle r="2" fill="#a5f4ff"/>
+    <animateMotion dur="4.8s" begin="-1.9s" repeatCount="indefinite"><mpath href="#led-route-7"/></animateMotion>
+  </g>
+  <g class="led-runner">
+    <circle r="5" fill="#22d8ff" fill-opacity=".26"/>
+    <circle r="2" fill="#a5f4ff"/>
+    <animateMotion dur="4.8s" begin="-3.8s" repeatCount="indefinite"><mpath href="#led-route-8"/></animateMotion>
+  </g>
+  <g class="led-runner">
+    <circle r="5" fill="#22d8ff" fill-opacity=".26"/>
+    <circle r="2" fill="#a5f4ff"/>
+    <animateMotion dur="5.4s" begin="-2.2s" repeatCount="indefinite"><mpath href="#led-route-9"/></animateMotion>
+  </g>
+  <g class="led-runner">
+    <circle r="5" fill="#22d8ff" fill-opacity=".26"/>
+    <circle r="2" fill="#a5f4ff"/>
+    <animateMotion dur="5.4s" begin="-4.7s" repeatCount="indefinite"><mpath href="#led-route-10"/></animateMotion>
+  </g>
+  <g class="led-runner">
+    <circle r="5" fill="#22d8ff" fill-opacity=".26"/>
+    <circle r="2" fill="#a5f4ff"/>
+    <animateMotion dur="4.5s" begin="-1.2s" repeatCount="indefinite"><mpath href="#led-route-11"/></animateMotion>
+  </g>
+  <g class="led-runner">
+    <circle r="5" fill="#22d8ff" fill-opacity=".26"/>
+    <circle r="2" fill="#a5f4ff"/>
+    <animateMotion dur="4.5s" begin="-3.3s" repeatCount="indefinite"><mpath href="#led-route-12"/></animateMotion>
+  </g>
+  <g class="led-runner">
+    <circle r="5" fill="#22d8ff" fill-opacity=".26"/>
+    <circle r="2" fill="#a5f4ff"/>
+    <animateMotion dur="3.8s" begin="-0.8s" repeatCount="indefinite"><mpath href="#led-route-13"/></animateMotion>
+  </g>
+  <g class="led-runner">
+    <circle r="5" fill="#22d8ff" fill-opacity=".26"/>
+    <circle r="2" fill="#a5f4ff"/>
+    <animateMotion dur="4.1s" begin="-2.6s" repeatCount="indefinite"><mpath href="#led-route-14"/></animateMotion>
+  </g>
+  <g class="led-runner">
+    <circle r="5" fill="#22d8ff" fill-opacity=".26"/>
+    <circle r="2" fill="#a5f4ff"/>
+    <animateMotion dur="4.3s" begin="-1.5s" repeatCount="indefinite"><mpath href="#led-route-15"/></animateMotion>
+  </g>
+  <g class="led-runner">
+    <circle r="5" fill="#22d8ff" fill-opacity=".26"/>
+    <circle r="2" fill="#a5f4ff"/>
+    <animateMotion dur="3.9s" begin="-2.1s" repeatCount="indefinite"><mpath href="#led-route-16"/></animateMotion>
+  </g>
+  <g class="led-runner">
+    <circle r="5" fill="#22d8ff" fill-opacity=".26"/>
+    <circle r="2" fill="#a5f4ff"/>
+    <animateMotion dur="4.7s" begin="-3.5s" repeatCount="indefinite"><mpath href="#led-route-17"/></animateMotion>
+  </g>
+  <g class="led-runner">
+    <circle r="5" fill="#22d8ff" fill-opacity=".26"/>
+    <circle r="2" fill="#a5f4ff"/>
+    <animateMotion dur="4.3s" begin="-0.7s" repeatCount="indefinite"><mpath href="#led-route-18"/></animateMotion>
+  </g>
+  <g class="led-runner">
+    <circle r="5" fill="#22d8ff" fill-opacity=".26"/>
+    <circle r="2" fill="#a5f4ff"/>
+    <animateMotion dur="4.9s" begin="-2.9s" repeatCount="indefinite"><mpath href="#led-route-19"/></animateMotion>
+  </g>
+  <g class="led-runner">
+    <circle r="5" fill="#22d8ff" fill-opacity=".26"/>
+    <circle r="2" fill="#a5f4ff"/>
+    <animateMotion dur="4.6s" begin="-1.6s" repeatCount="indefinite"><mpath href="#led-route-20"/></animateMotion>
+  </g>
+  <g class="led-runner">
+    <circle r="5" fill="#22d8ff" fill-opacity=".26"/>
+    <circle r="2" fill="#a5f4ff"/>
+    <animateMotion dur="4.2s" begin="-2.5s" repeatCount="indefinite"><mpath href="#led-route-21"/></animateMotion>
+  </g>
+
+  <g stroke="#b3c2cf" stroke-linecap="round">
+    <g transform="translate(347 259)">
+      <g class="gear-wheel gear-wheel--large">
+        <circle r="77" stroke-dasharray="3 6" stroke-opacity=".55" stroke-width="11"/>
+        <circle r="65" stroke-opacity=".32" stroke-width="1.5"/>
+        <circle r="38" stroke="#d7a85c" stroke-opacity=".55" stroke-width="2"/>
+        <path d="M0-57v19m0 76v19m-57-57h19m76 0h19M-40-40l14 14m52 52 14 14m0-80L26-26m-52 52L-40 40" stroke-opacity=".58" stroke-width="3"/>
+        <circle r="10" stroke="#d7a85c" stroke-opacity=".75" stroke-width="3"/>
+        <circle r="3" fill="#d7a85c" stroke="none"/>
+      </g>
+    </g>
+    <g transform="translate(421 402)">
+      <g class="gear-wheel gear-wheel--medium">
+        <circle r="62" stroke-dasharray="2 5" stroke-opacity=".48" stroke-width="9"/>
+        <circle r="51" stroke-opacity=".28" stroke-width="1.5"/>
+        <circle r="27" stroke="#d7a85c" stroke-opacity=".48" stroke-width="2"/>
+        <path d="M0-43v16m0 54v16m-43-43h16m54 0h16m-46-30 12 12m-12 30-12 12m30 0-12-12m12-30-12 12" stroke-opacity=".5" stroke-width="2.5"/>
+        <circle r="7" stroke="#d7a85c" stroke-opacity=".7" stroke-width="2.5"/>
+      </g>
+    </g>
+    <g transform="translate(303 550)">
+      <g class="gear-wheel gear-wheel--small">
+        <circle r="73" stroke-dasharray="3 6" stroke-opacity=".5" stroke-width="10"/>
+        <circle r="61" stroke-opacity=".3" stroke-width="1.5"/>
+        <circle r="34" stroke="#d7a85c" stroke-opacity=".52" stroke-width="2"/>
+        <path d="M0-53v18m0 70v18m-53-53h18m70 0h18m-55-37 13 13m-13 44-13 13m44 0-13-13m13-44-13 13" stroke-opacity=".55" stroke-width="3"/>
+        <circle r="9" stroke="#d7a85c" stroke-opacity=".7" stroke-width="2.5"/>
+        <circle r="3" fill="#d7a85c" stroke="none"/>
+      </g>
+    </g>
+  </g>
+
+  <g stroke="#19bce7" stroke-opacity=".52">
+    <rect x="409" y="126" width="38" height="38" rx="4" stroke-width="1.5"/>
+    <rect x="418" y="135" width="20" height="20" rx="2" stroke-width="1.2"/>
+    <path d="M416 120v6m8-6v6m8-6v6m8-6v6m-24 38v6m8-6v6m8-6v6m8-6v6m-40-24h6m-6 8h6m32-8h6m-6 8h6" stroke-width="1.4"/>
+    <rect x="108" y="492" width="33" height="33" rx="3" stroke-width="1.5"/>
+    <path d="M115 483v9m8-9v9m8-9v9m8-9v9m-24 42v9m8-9v9m8-9v9m8-9v9m-42-34h9m-9 8h9m33-8h9m-9 8h9" stroke-width="1.4"/>
+    <circle cx="477" cy="540" r="13" stroke-width="1.5"/>
+    <circle cx="477" cy="540" r="5" stroke-width="1.5"/>
+    <circle cx="177" cy="191" r="9" stroke-width="1.5"/>
+    <circle cx="177" cy="191" r="3" stroke-width="1.5"/>
+  </g>
+
+  <g stroke="#d7a85c" stroke-opacity=".44" stroke-width="1.5">
+    <path d="M451 184v24h-27v16m41 247h-27v-19m-105 187v27h-34m-190-190v-21h32"/>
+    <circle cx="424" cy="224" r="3" fill="#d7a85c"/>
+    <circle cx="438" cy="455" r="3" fill="#d7a85c"/>
+    <circle cx="335" cy="658" r="3" fill="#d7a85c"/>
+    <circle cx="140" cy="440" r="3" fill="#d7a85c"/>
+  </g>
+</svg>

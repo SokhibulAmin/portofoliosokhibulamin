@@ -1,5 +1,6 @@
 import { ArrowUpRight, BookOpen, GraduationCap, Sparkles } from "lucide-react";
 import { useLanguage } from "../LanguageContext.jsx";
+import ScrollReveal from "./ScrollReveal.jsx";
 
 export default function About() {
   const { t } = useLanguage();
@@ -17,22 +18,26 @@ export default function About() {
           <h2>{t("aboutTitle")} <span className="text-gradient">{t("aboutTitleAccent")}</span></h2>
         </div>
         <div className="about-layout">
-          <div className="about-intro">
-            <p className="about-lead">{t("hello")}</p>
-            <p className="body-copy">{t("aboutDescription")}</p>
-            <a className="text-link" href="#kontak">
-              {t("sayHello")} <ArrowUpRight size={16} />
-            </a>
-          </div>
+          <ScrollReveal>
+            <div className="about-intro">
+              <p className="about-lead">{t("hello")}</p>
+              <p className="body-copy">{t("aboutDescription")}</p>
+              <a className="text-link" href="#kontak">
+                {t("sayHello")} <ArrowUpRight size={16} />
+              </a>
+            </div>
+          </ScrollReveal>
           <div className="about-highlights">
-            {highlights.map(({ icon: Icon, label, value }) => (
-              <article className="highlight-card" key={label}>
-                <span className="highlight-icon"><Icon size={19} aria-hidden="true" /></span>
-                <div>
-                  <p>{label}</p>
-                  <h3>{value}</h3>
-                </div>
-              </article>
+            {highlights.map(({ icon: Icon, label, value }, index) => (
+              <ScrollReveal delay={index * 110} key={label}>
+                <article className="highlight-card">
+                  <span className="highlight-icon"><Icon size={19} aria-hidden="true" /></span>
+                  <div>
+                    <p>{label}</p>
+                    <h3>{value}</h3>
+                  </div>
+                </article>
+              </ScrollReveal>
             ))}
           </div>
         </div>

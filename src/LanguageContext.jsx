@@ -32,8 +32,6 @@ const translations = {
     portraitAlt: "Foto Sokhibul Amin",
     informatika: "Informatika",
     worksLearnGrow: "Karya · Belajar · Bertumbuh",
-    robotLabel: "Robot 3D interaktif, sentuh untuk menyapa",
-    robotPrompt: "Sentuh aku!",
     aboutEyebrow: "01 / Tentang",
     aboutTitle: "Ruang untuk",
     aboutTitleAccent: "bertumbuh.",
@@ -60,7 +58,6 @@ const translations = {
     clickToZoom: "Klik untuk perbesar",
     tools: "Tools",
     notRecorded: "Belum dicatat",
-    toolDetails: "Rincian tools",
     deploymentStatus: "Status deploy",
     deployed: "Sudah deploy",
     demo: "Demo",
@@ -163,8 +160,6 @@ const translations = {
     portraitAlt: "Photo of Sokhibul Amin",
     informatika: "Informatics",
     worksLearnGrow: "Create · Learn · Grow",
-    robotLabel: "Interactive 3D robot, tap to say hello",
-    robotPrompt: "Tap me!",
     aboutEyebrow: "01 / About",
     aboutTitle: "A space to",
     aboutTitleAccent: "grow.",
@@ -191,7 +186,6 @@ const translations = {
     clickToZoom: "Click to enlarge",
     tools: "Tools",
     notRecorded: "Not listed",
-    toolDetails: "Tool details",
     deploymentStatus: "Deployment status",
     deployed: "Deployed",
     demo: "Demo",
@@ -294,8 +288,6 @@ const translations = {
     portraitAlt: "Sokhibul Amin 的照片",
     informatika: "信息工程",
     worksLearnGrow: "创作 · 学习 · 成长",
-    robotLabel: "可互动的 3D 机器人，点击打招呼",
-    robotPrompt: "点击我！",
     aboutEyebrow: "01 / 关于",
     aboutTitle: "持续",
     aboutTitleAccent: "成长。",
@@ -322,7 +314,6 @@ const translations = {
     clickToZoom: "点击放大",
     tools: "工具",
     notRecorded: "未记录",
-    toolDetails: "工具详情",
     deploymentStatus: "部署状态",
     deployed: "已部署",
     demo: "演示",
@@ -441,16 +432,8 @@ const projectTranslations = {
   en: {
     "bimbel-english-private": {
       title: "EduPath Academy — Private English Tutoring",
-      description: "A landing page for private English tutoring for elementary, junior high, and senior high school students, university students, and adults. It presents study programs, pricing packages, service benefits, FAQs, WhatsApp contact, social media links, and light and dark themes in a responsive desktop and mobile design.",
+      description: "A private English tutoring website with program, study package, and contact information.",
       category: "Web Development",
-      toolDetails: [
-        { name: "React", description: "Builds a modular and interactive website interface." },
-        { name: "Vite", description: "Build tool and development server for running the project and streamlining development and production builds." },
-        { name: "Tailwind CSS", description: "Provides modern, responsive styling for a consistent interface." },
-        { name: "JavaScript / JSX", description: "Handles website logic, program data, FAQs, calls to action, and interface interactions." },
-        { name: "Node.js and npm", description: "Used to install dependencies, run the project locally, and create production builds." },
-        { name: "Vercel", description: "The platform used to deploy the website online." },
-      ],
       images: [
         "Private English tutoring website homepage, dark theme",
         "Private English tutoring website homepage, light theme",
@@ -463,7 +446,7 @@ const projectTranslations = {
     },
     "absensi-magang-diskominfo": {
       title: "DISKOMINFO Internship Attendance Website",
-      description: "Internship attendance website with a sign-in page and dashboard.",
+      description: "Internship attendance website with dashboards for administrators and interns.",
       category: "Web Development",
       images: [
         "DISKOMINFO internship attendance sign-in page",
@@ -479,19 +462,19 @@ const projectTranslations = {
     },
     "dataset-amazon-disney": {
       title: "Amazon Prime & Disney+ Dataset",
-      description: "CSV datasets and an Excel workbook about Amazon Prime and Disney+ movie and TV catalogs.",
+      description: "Amazon Prime and Disney+ movie and TV datasets in CSV and Excel formats.",
       category: "Excel & Data",
       files: ["Excel workbook", "Amazon Prime dataset (CSV)", "Disney+ dataset (CSV)", "Analysis report (PDF)"],
     },
     "leafcare-pumpkin": {
       title: "LeafCare Pumpkin",
-      description: "Web interface for a pumpkin plant health diagnosis system; project documentation mentions deep learning.",
+      description: "A web app for diagnosing pumpkin plant health using deep learning.",
       category: "Academic Projects",
       images: ["LeafCare Pumpkin homepage", "LeafCare detection panel", "LeafCare diagnosis result example", "LeafCare diagnosis catalog", "LeafCare system specifications"],
     },
     "prediksi-penjualan-beras": {
       title: "Rice Sales Prediction",
-      description: "Web interface for rice sales predictions, including MAPE accuracy testing.",
+      description: "A web app that predicts rice sales and displays MAPE accuracy.",
       category: "Academic Projects",
       images: ["Rice sales prediction app homepage", "MAPE testing in the rice prediction app", "Rice sales prediction results"],
     },
@@ -499,16 +482,8 @@ const projectTranslations = {
   zh: {
     "bimbel-english-private": {
       title: "EduPath Academy — 英语私人辅导",
-      description: "为小学生、初中生、高中生、大学生及成人提供英语私人辅导服务的落地页。页面介绍学习课程、价格套餐、服务优势、常见问题、WhatsApp 联系方式、社交媒体链接，并提供明暗主题，适配桌面和移动设备。",
+      description: "提供课程、学习套餐和联系方式的英语私人辅导网站。",
       category: "网页开发",
-      toolDetails: [
-        { name: "React", description: "用于构建模块化且可交互的网站界面。" },
-        { name: "Vite", description: "用于运行项目的构建工具和开发服务器，并简化开发及生产构建流程。" },
-        { name: "Tailwind CSS", description: "用于实现现代、响应式且一致的网站样式。" },
-        { name: "JavaScript / JSX", description: "用于处理网站逻辑、课程数据、常见问题、行动号召和界面交互。" },
-        { name: "Node.js 和 npm", description: "用于安装依赖、在本地运行项目并生成生产构建。" },
-        { name: "Vercel", description: "用于在线部署网站的平台。" },
-      ],
       images: [
         "英语辅导网站首页（深色主题）",
         "英语辅导网站首页（浅色主题）",
@@ -521,7 +496,7 @@ const projectTranslations = {
     },
     "absensi-magang-diskominfo": {
       title: "DISKOMINFO 实习考勤网站",
-      description: "包含登录页面和仪表板的实习考勤网站。",
+      description: "提供管理员和实习生仪表板的实习考勤网站。",
       category: "网页开发",
       images: [
         "DISKOMINFO 实习考勤登录页面",
@@ -537,19 +512,19 @@ const projectTranslations = {
     },
     "dataset-amazon-disney": {
       title: "Amazon Prime 与 Disney+ 数据集",
-      description: "关于 Amazon Prime 和 Disney+ 电影及电视节目目录的 CSV 数据集与 Excel 工作簿。",
+      description: "Amazon Prime 和 Disney+ 电影与电视节目数据，包含 CSV 和 Excel 格式。",
       category: "Excel 与数据",
       files: ["Excel 工作簿", "Amazon Prime 数据集（CSV）", "Disney+ 数据集（CSV）", "分析报告（PDF）"],
     },
     "leafcare-pumpkin": {
       title: "LeafCare Pumpkin",
-      description: "南瓜植物健康诊断系统的网页界面；项目文档提及深度学习。",
+      description: "使用深度学习诊断南瓜植物健康的网页应用。",
       category: "学术项目",
       images: ["LeafCare Pumpkin 首页", "LeafCare 检测面板", "LeafCare 诊断结果示例", "LeafCare 诊断目录", "LeafCare 系统规格信息"],
     },
     "prediksi-penjualan-beras": {
       title: "大米销售预测",
-      description: "用于大米销售预测的网页界面，并展示 MAPE 准确率测试。",
+      description: "预测大米销量并显示 MAPE 准确率的网页应用。",
       category: "学术项目",
       images: ["大米销售预测应用首页", "大米预测应用中的 MAPE 测试", "大米销售预测结果"],
     },

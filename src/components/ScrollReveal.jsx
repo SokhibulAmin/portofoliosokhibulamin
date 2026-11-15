@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-export default function ScrollReveal({ children }) {
+export default function ScrollReveal({ children, delay = 0 }) {
   const revealRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -33,6 +33,7 @@ export default function ScrollReveal({ children }) {
     <div
       className={`scroll-reveal${isVisible ? " is-visible" : ""}`}
       ref={revealRef}
+      style={{ "--reveal-delay": `${delay}ms` }}
     >
       {children}
     </div>

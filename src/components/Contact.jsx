@@ -1,6 +1,7 @@
 import { ArrowUpRight, Linkedin, Mail, MessageCircle } from "lucide-react";
 import { SiInstagram, SiTiktok } from "@icons-pack/react-simple-icons";
 import { useLanguage } from "../LanguageContext.jsx";
+import ScrollReveal from "./ScrollReveal.jsx";
 
 const contacts = [
   {
@@ -57,43 +58,46 @@ export default function Contact() {
     <section className="section contact-section section-anchor" id="kontak">
       <div className="container-wide">
         <div className="contact-panel">
-          <div className="contact-copy">
-            <p className="eyebrow">{t("contactEyebrow")}</p>
-            <h2>{t("contactTitle")}<br /><span className="text-gradient">{t("contactTitleAccent")}</span></h2>
-            <p>{t("contactDescription")}</p>
-            <a
-              className="button button-primary contact-email-button"
-              href={whatsappHref}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {t("contactWhatsApp")} <ArrowUpRight size={17} />
-            </a>
-          </div>
-          <div className="contact-list">
-            {contacts.map(({ name, value, href, icon: Icon, iconColor, external }) => (
+          <ScrollReveal>
+            <div className="contact-copy">
+              <p className="eyebrow">{t("contactEyebrow")}</p>
+              <h2>{t("contactTitle")}<br /><span className="text-gradient">{t("contactTitleAccent")}</span></h2>
+              <p>{t("contactDescription")}</p>
               <a
-                className="contact-item"
-                href={name === "WhatsApp" ? whatsappHref : href}
-                key={name}
-                target={external ? "_blank" : undefined}
-                rel={external ? "noreferrer" : undefined}
-                aria-label={`${name}: ${value}`}
+                className="button button-primary contact-email-button"
+                href={whatsappHref}
+                target="_blank"
+                rel="noreferrer"
               >
-                <span className="contact-icon">
-                  <Icon
-                    size={19}
-                    color={iconColor}
-                    strokeWidth={name === "Email" ? 1.7 : undefined}
-                    aria-hidden="true"
-                  />
-                </span>
-                <span className="contact-text">
-                  <strong>{name}</strong>
-                  <small>{value}</small>
-                </span>
-                <ArrowUpRight className="contact-arrow" size={17} />
+                {t("contactWhatsApp")} <ArrowUpRight size={17} />
               </a>
+            </div>
+          </ScrollReveal>
+          <div className="contact-list">
+            {contacts.map(({ name, value, href, icon: Icon, iconColor, external }, index) => (
+              <ScrollReveal delay={index * 90} key={name}>
+                <a
+                  className="contact-item"
+                  href={name === "WhatsApp" ? whatsappHref : href}
+                  target={external ? "_blank" : undefined}
+                  rel={external ? "noreferrer" : undefined}
+                  aria-label={`${name}: ${value}`}
+                >
+                  <span className="contact-icon">
+                    <Icon
+                      size={19}
+                      color={iconColor}
+                      strokeWidth={name === "Email" ? 1.7 : undefined}
+                      aria-hidden="true"
+                    />
+                  </span>
+                  <span className="contact-text">
+                    <strong>{name}</strong>
+                    <small>{value}</small>
+                  </span>
+                  <ArrowUpRight className="contact-arrow" size={17} />
+                </a>
+              </ScrollReveal>
             ))}
           </div>
         </div>
