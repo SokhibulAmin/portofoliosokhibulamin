@@ -77,7 +77,34 @@ export default function Hero() {
   return (
     <section className="hero-section section-anchor" id="beranda">
       <div className="hero-glow" aria-hidden="true" />
+      <div className="hero-mechanical-layer" aria-hidden="true">
+        <ClockworkBackground rotation={gearRotation} />
+      </div>
+      <div className="container-wide hero-clock-wrap">
+        <LocalClock language={language} t={t} now={now} />
+      </div>
       <div className="container-wide hero-grid">
+        <div className="hero-visual">
+          <div className="hero-orbit hero-orbit-one" aria-hidden="true" />
+          <div className="hero-orbit hero-orbit-two" aria-hidden="true" />
+          <div className="portrait-frame">
+            <div className="portrait-frame-top">
+              <span className="portrait-kicker">{t("portraitKicker")}</span>
+              <span className="portrait-sparkle" aria-hidden="true">✦</span>
+            </div>
+            <img
+              className="profile-photo"
+              src="/images/profile-portrait.webp"
+              alt={t("portraitAlt")}
+              width="777"
+              height="800"
+            />
+            <p className="portrait-caption">{t("portraitCaption")}</p>
+          </div>
+          <span className="floating-label floating-label-top">{t("informatika")}</span>
+          <span className="floating-label floating-label-bottom">{t("worksLearnGrow")}</span>
+        </div>
+
         <div className="hero-copy">
           <p className="eyebrow"><span className="status-dot" /> {t("portfolio")}</p>
           <h1>
@@ -99,29 +126,6 @@ export default function Hero() {
             <Sparkles size={15} aria-hidden="true" />
             {t("journey")}
           </p>
-          <LocalClock language={language} t={t} now={now} />
-        </div>
-
-        <div className="hero-visual">
-          <ClockworkBackground rotation={gearRotation} />
-          <div className="hero-orbit hero-orbit-one" aria-hidden="true" />
-          <div className="hero-orbit hero-orbit-two" aria-hidden="true" />
-          <div className="portrait-frame">
-            <div className="portrait-frame-top">
-              <span className="portrait-kicker">{t("portraitKicker")}</span>
-              <span className="portrait-sparkle" aria-hidden="true">✦</span>
-            </div>
-            <img
-              className="profile-photo"
-              src="/images/profile-portrait.webp"
-              alt={t("portraitAlt")}
-              width="777"
-              height="800"
-            />
-            <p className="portrait-caption">{t("portraitCaption")}</p>
-          </div>
-          <span className="floating-label floating-label-top">{t("informatika")}</span>
-          <span className="floating-label floating-label-bottom">{t("worksLearnGrow")}</span>
         </div>
       </div>
       <TechnologyMarquee />

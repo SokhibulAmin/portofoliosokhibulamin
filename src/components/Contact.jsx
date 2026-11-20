@@ -1,4 +1,4 @@
-import { ArrowUpRight, Linkedin, Mail, MessageCircle } from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Mail, MessageCircle } from "lucide-react";
 import { SiInstagram, SiTiktok } from "@icons-pack/react-simple-icons";
 import { useLanguage } from "../LanguageContext.jsx";
 import ScrollReveal from "./ScrollReveal.jsx";
@@ -41,6 +41,13 @@ const contacts = [
     href: "https://www.linkedin.com/in/sokhibul-amin",
     icon: Linkedin,
     iconColor: "#0A66C2",
+    external: true,
+  },
+  {
+    name: "GitHub",
+    value: "github.com/SokhibulAmin",
+    href: "https://github.com/SokhibulAmin",
+    icon: Github,
     external: true,
   },
 ];
