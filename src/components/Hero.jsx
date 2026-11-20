@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { ArrowDown, ArrowUpRight, Sparkles } from "lucide-react";
 import { useLanguage } from "../LanguageContext.jsx";
 import ClockworkBackground from "./ClockworkBackground.jsx";
+import DesktopTechBackdrop from "./DesktopTechBackdrop.jsx";
+import MobileTechBackdrop from "./MobileTechBackdrop.jsx";
 import TechnologyMarquee from "./TechnologyMarquee.jsx";
 
 const locales = { id: "id-ID", en: "en-US", zh: "zh-CN" };
@@ -79,11 +81,13 @@ export default function Hero() {
       <div className="hero-glow" aria-hidden="true" />
       <div className="hero-mechanical-layer" aria-hidden="true">
         <ClockworkBackground rotation={gearRotation} />
-      </div>
-      <div className="container-wide hero-clock-wrap">
-        <LocalClock language={language} t={t} now={now} />
+        <DesktopTechBackdrop />
+        <MobileTechBackdrop />
       </div>
       <div className="container-wide hero-grid">
+        <div className="hero-clock-wrap">
+          <LocalClock language={language} t={t} now={now} />
+        </div>
         <div className="hero-visual">
           <div className="hero-orbit hero-orbit-one" aria-hidden="true" />
           <div className="hero-orbit hero-orbit-two" aria-hidden="true" />
